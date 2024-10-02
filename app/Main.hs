@@ -1,16 +1,17 @@
 module Main (main) where
 
-import Lib
-import Constants
-import PrimalDualInteriorPoints
+import PrimalDualInteriorPoint
 import Numeric.LinearAlgebra
 
-x0 = vector [1,1,1,1,1]
-y0 = vector [1,1]
-s0 = vector [1,1,1,1,1]
-nu = 5
-
-
 main :: IO ()
-main = do
-    print "hello world"
+main = print $ last_state
+    where
+        last_state = runSteps initial_state rho nu max_iteration
+
+        x0            = [1,2,3,4,5]             :: [Double]
+        y0            = [-1,-1]                 :: [Double]
+        s0            = [1,1,1,1,1]             :: [Double]
+        rho           = 10                      :: Double
+        initial_state = vector $ x0 ++ y0 ++ s0 :: Vector Double
+        nu            = dualGap initial_state
+        max_iteration = 1000

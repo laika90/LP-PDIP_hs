@@ -1,39 +1,36 @@
-module Constants
-    ( n, m, a, b, c, e, c1, c2,
-      identity_nn,
-      ones,
-      zero_mat_mn,
-      zero_mat_nn,
-      zero_mat_mm,
-      left_mat_top,
-      left_mat_middle) where
+module Constants where
 
 import Numeric.LinearAlgebra
 
-n :: Int -- the number of variables
-n = 5
+--------------------------------------------------------------------------------------------------
+-- LP 
 
-m :: Int -- the number of constraints
-m = 2
+n = 5                            :: Int -- the number of constants
 
-a :: Matrix Double
+m = 2                            :: Int -- the numbar of variables
+
 a = (m >< n) [ 1,  3, -3, 1, 0,
-               1, -1,  1, 0, 1 ]
+               1, -1,  1, 0, 1 ] :: Matrix Double
 
-b :: Vector Double
-b = vector [3, 1]
+b = vector [3, 1]                :: Vector Double
 
-c :: Vector Double
-c = vector [-2, -1, 1, 0, 0]
+c = vector [-2, -1, 1, 0, 0]     :: Vector Double
 
-e :: Double
-e = 0.0005
+--------------------------------------------------------------------------------------------------
+-- some parameters 
 
-c1 :: Double
-c1 = 0.5
+e       = 0.0005 :: Double
 
-c2 :: Double 
-c2 = 0.5
+gamma   = 0.5    :: Double
+
+rho_max = 1e10   :: Double
+
+beta    = 2.0    :: Double
+
+eps     = 1e-5   :: Double
+
+--------------------------------------------------------------------------------------------------
+-- the matricies used in PDIP
 
 identity_nn :: Matrix Double
 identity_nn = ident n
@@ -56,5 +53,6 @@ left_mat_top = a ||| zero_mat_mm ||| zero_mat_mn
 left_mat_middle ::Matrix Double
 left_mat_middle = zero_mat_nn ||| tr a ||| identity_nn
 
+--------------------------------------------------------------------------------------------------
 
 
