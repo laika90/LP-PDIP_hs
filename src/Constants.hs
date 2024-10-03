@@ -5,29 +5,38 @@ import Numeric.LinearAlgebra
 --------------------------------------------------------------------------------------------------
 -- LP 
 
-n = 5                            :: Int -- the number of constants
+n :: Int -- the number of constraints
+n = 5                    
 
-m = 2                            :: Int -- the numbar of variables
+m :: Int -- the number of variables
+m = 2       
 
+a :: Matrix Double
 a = (m >< n) [ 1,  3, -3, 1, 0,
-               1, -1,  1, 0, 1 ] :: Matrix Double
+               1, -1,  1, 0, 1 ] 
 
-b = vector [3, 1]                :: Vector Double
+b :: Vector Double
+b = vector [3, 1]                
 
-c = vector [-2, -1, 1, 0, 0]     :: Vector Double
-
+c :: Vector Double
+c = vector [-2, -1, 1, 0, 0]  
 --------------------------------------------------------------------------------------------------
 -- some parameters 
 
-e       = 0.0005 :: Double
+e :: Double
+e       = 0.0005 
 
-gamma   = 0.5    :: Double
+gamma :: Double
+gamma   = 0.5    
 
-rho_max = 1e10   :: Double
+rho_max :: Double
+rho_max = 1e10   
 
-beta    = 2.0    :: Double
+beta :: Double
+beta    = 2.0    
 
-eps     = 1e-5   :: Double
+eps :: Double
+eps     = 1e-5   
 
 --------------------------------------------------------------------------------------------------
 -- the matricies used in PDIP

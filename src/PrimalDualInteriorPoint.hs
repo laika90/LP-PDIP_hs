@@ -3,6 +3,7 @@ module PrimalDualInteriorPoint (runSteps, dualGap) where
 import Prelude hiding ((<>))
 import Numeric.LinearAlgebra
 import Constants
+import WriterFunction
 -- import Debug.Trace (trace)
 
 --------------------------------------------------------------------------------------------------
@@ -106,16 +107,17 @@ renewBarrierParameter rho = min (beta*rho) rho_max
 
 --------------------------------------------------------------------------------------------------
 
-runSteps :: State -> Double -> Double -> Int -> State
-runSteps state_k rho nu count 
-    | count <= 0 = state_k
-    | (maximum [gap_k, primal_constraint_error, dual_constraint_error]) <= eps = state_k
+runSteps :: State -> Double -> Double -> Int -> String -> IO State
+runSteps state_k rho nu count path
+    | count <= 0 = return state_k
+    | (maximum [gap_k, primal_constraint_error, dual_constraint_error]) <= eps = return state_k
     | otherwise  = case maybe_direction of
         Nothing        -> error "direction not found"
-        Just direction -> 
+        Just direction -> do
+            writeToFile path (modifyStateVector $ show state_k)
             let alpha    = determineStep state_k direction rho nu'
                 state_k' = state_k + scalar alpha * direction
-            in runSteps state_k' rho' nu' (count-1)
+            runSteps state_k' rho' nu' (count-1) path
     where
         gap_k        = dualGap state_k
         (xk, yk, sk) = splitState state_k
@@ -126,6 +128,7 @@ runSteps state_k rho nu count
         maybe_direction = determineSearchDirection state_k nu
         rho'            = renewBarrierParameter rho
 
+--------------------------------------------------------------------------------------------------
 
 
 
