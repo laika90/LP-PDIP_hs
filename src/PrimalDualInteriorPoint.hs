@@ -20,8 +20,8 @@ determineSearchDirection state_k nu = maybe_direction -- state_k = vector [xk, y
     where 
         (xk, yk, sk) = splitState state_k
 
-        rbk = a #> xk - b
-        rck = (tr a) #> yk + sk - c
+        rbk = hPrimal xk
+        rck = hDual   yk sk
 
         xk_diag = diag xk
         sk_diag = diag sk
