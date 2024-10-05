@@ -5,10 +5,10 @@ import Numeric.LinearAlgebra
 --------------------------------------------------------------------------------------------------
 -- LP 
 
-n :: Int -- the number of constraints
+n :: Int -- the number of variables
 n = 5                    
 
-m :: Int -- the number of variables
+m :: Int -- the number of constraints
 m = 2       
 
 a :: Matrix Double
