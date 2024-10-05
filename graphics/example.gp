@@ -1,7 +1,7 @@
 reset
 
-set xlabel "x1"
-set ylabel "x2"
+set xlabel "x_1"
+set ylabel "x_2"
 
 set grid
 
@@ -21,8 +21,8 @@ set object 1 polygon from 0, h1(0) to 0, h2(0) to 1.5, h2(1.5) to 1.5, h1(1.5) t
     fillstyle transparent solid 0.3 fc "yellow"
 
 plot '../data/state.dat' using 1:($2-$3) with linespoints title 'LP example' linewidth 2, \
-     h1(x) with lines title "x + 3y = 3" linecolor "blue" linewidth 2, \
-     h2(x) with lines title "x - y = 1" linecolor "red" linewidth 2, \
+     h1(x) with lines title "x + 3y - 3 = 0" linecolor "blue" linewidth 2, \
+     h2(x) with lines title "x - y - 1 = 0" linecolor "red" linewidth 2, \
      f(x) + 1 with lines lt 2 linewidth 1 linecolor "gray" notitle, \
      f(x) + 2 with lines lt 2 linewidth 1 linecolor "gray" notitle, \
      f(x) + 3 with lines lt 2 linewidth 1 linecolor "gray" notitle, \
