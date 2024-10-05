@@ -3,6 +3,8 @@ reset
 set xlabel "x1"
 set ylabel "x2"
 
+set grid
+
 set xrange [-0.5:2.5]
 set yrange [-1.2:1.2]
 
